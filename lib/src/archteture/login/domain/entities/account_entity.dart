@@ -1,4 +1,4 @@
-abstract class AccountEntity{
+class AccountEntity{
   final int id;
   final String name;
   final String phoneNumber;
