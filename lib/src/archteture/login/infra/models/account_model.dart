@@ -14,7 +14,7 @@ class AccountModel {
   factory AccountModel.fromJson(Map<String, dynamic> json) {
     if (!json.containsKey('id') ||
         !json.containsKey('name') ||
-        !json.containsKey('phoneNumber')) {
+        !json.containsKey('phone_number')) {
       throw Exception();
     }
     return AccountModel(

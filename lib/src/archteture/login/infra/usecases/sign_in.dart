@@ -7,8 +7,12 @@ class SignIn extends ISignIn{
 
   @override
   Future<AccountEntity> loginAccount(String phoneNumber) async {
-    final signInResponse = await _repository.doSingIn(phoneNumber);
-
-    return signInResponse;
+    try {
+      final signInResponse = await _repository.doSingIn(phoneNumber);
+      return signInResponse;
+      
+    } catch (e) {
+      rethrow;
+    }
   }
 }

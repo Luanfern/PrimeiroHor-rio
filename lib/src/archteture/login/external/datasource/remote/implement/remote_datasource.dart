@@ -1,21 +1,24 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 
 import '../../../../../../src.dart';
 
 class RemoteDatasource extends IRemoteDatasource {
-  final dio = Dio();
+  final Dio dio;
+
+  RemoteDatasource(this.dio);
 
   @override
   Future<AccountEntity> signInServer(String phoneNumber) async {
-    Response response = await dio.post(
-      'url here',
-      data: {'phoneNumber': phoneNumber},
-    );
+    Response response;
+    try {
+      response = await dio.get(
+        'http://localhost:3000/primeirohorario/login',
+        queryParameters: {'phone_number': phoneNumber},
+      );
+      return AccountModel.fromJson(response.data).toEntity();
 
-    Map<String, dynamic> jsonResponse = jsonDecode(response.data);
-
-    return AccountModel.fromJson(jsonResponse).toEntity();
+    } catch (e) {
+      rethrow;
+    }
   }
 }

@@ -7,8 +7,13 @@ class LoginRepository extends ILoginRepository{
 
   @override
   Future<AccountEntity> doSingIn(String phoneNumber) async {
-    final signInServer = await _datasource.signInServer(phoneNumber);
-    return signInServer;
+    try {
+      final signInServer = await _datasource.signInServer(phoneNumber);
+      return signInServer;      
+
+    } catch (e) {
+      rethrow;
+    }
   }
 
 }
